@@ -7,6 +7,12 @@
 #include "Misc/AES.h"
 #include "Widgets/SCompoundWidget.h"
 #include "Widgets/DeclarativeSyntaxSupport.h"
+#include "Widgets/Views/STreeView.h"
+
+class FProjectLauncherModel;
+class ITableRow;
+class ITargetDeviceProxy;
+class STableViewBase;
 
 /** The struct representing an item in the asset tree */
 struct FTreeItem : public TSharedFromThis<FTreeItem>
