@@ -6,33 +6,30 @@ using System.Collections.Generic;
 [SupportedPlatforms(UnrealPlatformClass.Desktop)]
 public class UnrealPakViewerTarget : TargetRules
 {
-	public UnrealPakViewerTarget(TargetInfo Target) : base(Target)
-	{
-		Type = TargetType.Program;
-		LinkType = TargetLinkType.Monolithic;
-		LaunchModuleName = "UnrealPakViewer";
+    public UnrealPakViewerTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Program;
+        LinkType = TargetLinkType.Monolithic;
+        LaunchModuleName = "UnrealPakViewer";
+        SolutionDirectory = "MyPrograms";
+        DefaultBuildSettings = BuildSettingsVersion.V2;
 
-		// Lean and mean
-		bCompileLeanAndMeanUE = true;
+        ExtraModuleNames.Add("EditorStyle");
 
-		// Never use malloc profiling in Unreal Header Tool.  We set this because often UHT is compiled right before the engine
-		// automatically by Unreal Build Tool, but if bUseMallocProfiler is defined, UHT can operate incorrectly.
-		bUseMallocProfiler = false;
+        // Lean and mean
+        bBuildDeveloperTools = true;
 
-		// No editor needed
-		bBuildEditor = false;
-		// Editor-only data, however, is needed
-		bBuildWithEditorOnlyData = true;
+        // Currently this app is not linking against the engine, so we'll compile out references from Core to the rest of the engine
+        bCompileAgainstEngine = false;
+        bCompileAgainstCoreUObject = true;
 
-		// Currently this app is not linking against the engine, so we'll compile out references from Core to the rest of the engine
-		bCompileAgainstEngine = false;
-		bCompileAgainstCoreUObject = true;
+        bUseLoggingInShipping = true;
+        bCompileWithPluginSupport = false;
 
-		// UnrealHeaderTool is a console application, not a Windows app (sets entry point to main(), instead of WinMain())
-		bIsBuildingConsoleApplication = false;
-
-		bUseLoggingInShipping = true;
+        bHasExports = false;
 
 		GlobalDefinitions.Add("NOINITCRASHREPORTER=1");
+
+		GlobalDefinitions.Add(string.Format("UNREAL_PAK_VIEWER_VERSION=TEXT(\"{0}\")", "1.0"));
 	}
 }

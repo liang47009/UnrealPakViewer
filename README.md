@@ -1,14 +1,31 @@
-# UnrealPakViewer
-查看 UE4 Pak 文件的图形化工具，类似 UnrealPak.exe
+# UnrealPakViewer ##
 
-## 使用 ##
+![UnrealPakViewer.png](UnrealPakViewer.png)
 
-整个文件夹复制到 *Engine\Source\Programs* 目录下，重新生成引擎或游戏工程项目
+## 编译 ##
 
-运行 *Engine\Binaries\Win64\UnrealPakViewer.exe*，选择 Pak 文件打开，在左边面板可以浏览文件列表，右键相应目录或文件可以导出到磁盘，右边面板显示具体信息，如图
+将代码克隆到 *Engine\Source\Programs* 目录下，重新生成解决方案编译即可
 
-![](UnrealPakViewer.png)
+* 已编译通过的引擎版本
+  * 4.24
+  * 4.25
+  * 4.26
+
+## 特性 ##
+
+* 查看 pak 文件头信息
+* 树形视图查看 pak 文件
+  * 文件夹大小占比进度条
+* 列表视图查看 pak 文件
+  * 支持过滤
+  * 支持升降排序
+* 多线程解压
 
 ## TODO ##
 
-* RSA Decryption
+* 命令行程序
+* Pak compare visiualize
+* resource load heat map
+* 文件列表视图里增加文件夹列表(通过选项开关，只显示文件，只显示文件夹，同时显示文件和文件夹)
+* Load from json or csv
+* 资源预览
